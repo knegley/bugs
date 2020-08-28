@@ -1,5 +1,5 @@
 <h1>Log In</h1>
-<form method="post" action="">
+<form method="POST" action="">
   {% csrf_token %} {{form.as_p}}
-  <input type="button" value="Log In" />
+  <input type="submit" value="Log In" />
 </form>

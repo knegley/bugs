@@ -1,0 +1,26 @@
+<h1>Ticket Profile for {{name}}</h1>
+<h3>Filed:</h3>
+{% for ticket in tickets %}
+<p>{{ticket}}</p>
+
+<hr />
+{% endfor %}
+<h3>Completed:</h3>
+{% for ticket in completed %}
+<p>{{ticket}}</p>
+
+<hr />
+{% endfor %}
+<h3>In_Progress:</h3>
+
+{% for ticket in in_progress %}
+<p>{{ticket}}</p>
+
+<hr />
+{% endfor %}
+<h3>Assigned:</h3>
+{% for ticket in assigned %}
+<p>{{ticket}}</p>
+
+<hr />
+{% endfor %}

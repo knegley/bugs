@@ -1,2 +1,29 @@
+<a href="{% url 'home' %}">Home</a>
 <h1>Ticket Detail</h1>
-{{ticket}}{{ticket.id}}
+<!-- {{ticket}}{{ticket.id}} -->
+<p>Title: {{ticket}}</p>
+<p>Description: {{ticket.description}}</p>
+<p>Time: {{ticket.time}}</p>
+<p>
+  Created By:
+  <a href="ticket/{{ticket.author.get_full_name}}/"
+    >{{ticket.author.get_full_name}}</a
+  >
+  <!-- {{ticket.author.get_full_name}} -->
+</p>
+<p>Status: {{ticket.ticket_status}}</p>
+{% if ticket.user_assigned is not None %}
+<p>
+  Assigned To:
+  <a href="ticket/{{ticket.user_assigned}}/">{{ticket.user_assigned}}</a>
+</p>
+{% else %}
+<p>Assigned To: {{ticket.user_assigned}}</p>
+{% endif %} {% if ticket.user_completed is not None %}
+<p>
+  Completed By:
+  <a href="ticket/{{ticket.user_completed}}/">{{ticket.user_completed}}</a>
+</p>
+{% else %}
+<p>Completed By: {{ticket.user_completed}}</p>
+{% endif %}
