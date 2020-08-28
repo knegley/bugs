@@ -2,6 +2,7 @@ from django.urls import path
 from bugs_app import views
 urlpatterns = [
     path('', views.home_view, name="home"),
+    path("status/<str:status>/<int:ticket_id>/", views.status_view),
     path("ticket/<int:ticket_id>/ticket/<str:ticket_author>/",
          views.author_view, name="author"),
     path("ticket/<int:ticket_id>/edit/", views.edit_ticket_view),

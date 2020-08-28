@@ -26,4 +26,15 @@
 </p>
 {% else %}
 <p>Completed By: {{ticket.user_completed}}</p>
+{% endif %} {% if ticket.ticket_status == "New" %}
+<a href="/status/In_Progress/{{ticket.id}}/"><button>Assign</button></a>
+<a href="/status/Done/{{ticket.id}}/"><button>Complete</button></a>
+<a href="/status/Invalid/{{ticket.id}}/"><button>Invalid</button></a>
+{% elif ticket.ticket_status == "In_Progress" %}
+<a href="/status/Done/{{ticket.id}}/"><button>Complete</button></a>
+<a href="/status/Invalid/{{ticket.id}}/"><button>Invalid</button></a>
+{% elif ticket.ticket_status == "Done" %}
+<a href="/status/Invalid/{{ticket.id}}/"><button>Invalid</button></a>
+{% else %}
+<p>no more statuses to change</p>
 {% endif %}

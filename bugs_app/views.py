@@ -162,6 +162,7 @@ def edit_ticket_view(request, ticket_id):
 
 def author_view(request, ticket_author, ticket_id):
     name = ticket_author
+
     # print(ticket_author)
     # print(ticket_author)
 
@@ -191,3 +192,39 @@ def author_view(request, ticket_author, ticket_id):
                   {"name": name, "tickets": tickets_by_author,
                    "completed": completed, "in_progress": in_progress_tickets,
                    "assigned": assigned})
+
+
+def status_view(request, status, ticket_id):
+    print(status)
+    ticket = Ticket.objects.filter(id=ticket_id).first()
+    user = request.user.get_full_name()
+    # ticket_status = ticket.ticket_status
+    # breakpoint()
+
+    if status == "In_Progress":
+        ticket.ticket_status = status
+        ticket.user_assigned = user
+        ticket.user_completed = None
+        # breakpoint()
+        ticket.save()
+        # breakpoint()
+
+    elif status == "Done":
+        ticket.ticket_status = status
+        ticket.user_assigned = None
+        ticket.user_completed = user
+        # breakpoint()
+
+        ticket.save()
+
+    elif status == "Invalid":
+        ticket.ticket_status = status
+        ticket.user_assigned = None
+        ticket.user_completed = None
+        # breakpoint()
+        ticket.save()
+
+    else:
+        pass
+
+    return HttpResponseRedirect(reverse("home"))
