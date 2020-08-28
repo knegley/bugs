@@ -178,7 +178,7 @@ def author_view(request, ticket_author, ticket_id):
     ) if ticket.user_filed == ticket_author]
 
     in_progress_tickets = [ticket.title for ticket in Ticket.objects.all(
-    ) if ticket.ticket_status == "In_Progress"]
+    ) if ticket.ticket_status == "In_Progress" and ticket.user_assigned == ticket_author]
 
     completed = [ticket.title for ticket in Ticket.objects.all()
                  if ticket.ticket_status == "Done" and ticket.user_completed == ticket_author]
